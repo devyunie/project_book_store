@@ -1,6 +1,6 @@
 package com.book.book_store.entity.auth;
 
-import com.book.book_store.dto.request.SignUpRequestDto;
+import com.book.book_store.dto.request.auth.SignUpRequestDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;

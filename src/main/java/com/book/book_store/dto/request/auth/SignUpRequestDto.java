@@ -1,4 +1,4 @@
-package com.book.book_store.dto.request;
+package com.book.book_store.dto.request.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
