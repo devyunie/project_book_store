@@ -16,12 +16,12 @@ import lombok.Getter;
 @Getter
 public class GetBooksListResponseDto extends ResponseDto {
     private List<BooksList> booksList;
-    private GetBooksListResponseDto(List<BooksEntity> booksEntities) {
+    private GetBooksListResponseDto(List<BooksList> booksLists) {
         super(ResponseCode.SUCCESS, ResponseMessage.SUCCESS);
-        this.booksList = BooksList.getList(booksEntities);
+        this.booksList = booksLists;
     }
-    public static ResponseEntity<GetBooksListResponseDto> success(List<BooksEntity> booksEntities) {
-        GetBooksListResponseDto responseBody = new GetBooksListResponseDto(booksEntities);
+    public static ResponseEntity<GetBooksListResponseDto> success(List<BooksList> booksLists) {
+        GetBooksListResponseDto responseBody = new GetBooksListResponseDto(booksLists);
         return ResponseEntity.status(HttpStatus.OK).body(responseBody);
     }
 }

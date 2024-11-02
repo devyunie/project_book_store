@@ -7,4 +7,5 @@ import com.book.book_store.entity.categories.CategoriesEntity;
 
 @Repository 
 public interface CategoriesRepository extends JpaRepository<CategoriesEntity, Integer> {
+    CategoriesEntity findByCategoriesNumber(Integer categoriesNumber);
 }

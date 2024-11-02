@@ -33,6 +33,32 @@ public class BooksController {
         return response;
     }
 
+    @GetMapping("/discounts")
+    public ResponseEntity <? super GetBooksListResponseDto> getBooksDiscountsList(){
+        ResponseEntity<? super GetBooksListResponseDto> response = bookService.getBooksDiscountList();
+        return response;
+    }
+
+    @GetMapping("/best-seller")
+    public ResponseEntity <? super GetBooksListResponseDto> getBooksBestSellerList(){
+        ResponseEntity<? super GetBooksListResponseDto> response = bookService.getBestSellerBookList();
+        return response;
+    }
+
+    @GetMapping("/recommend/recently-books")
+    public ResponseEntity <? super GetBooksListResponseDto> getBooksRecentlyBooksList(){
+        ResponseEntity<? super GetBooksListResponseDto> response = bookService.getRecentlyBookList();
+        return response;
+    }
+
+    @GetMapping("/recommend/category-best-seller")
+    public ResponseEntity <? super GetBooksListResponseDto> getBooksCategoryBestSellerList(
+            @AuthenticationPrincipal String userId
+    ){
+        ResponseEntity<? super GetBooksListResponseDto> response = bookService.getBooksCategoryBestSellerList(userId);
+        return response;
+    }
+
     @PostMapping("{bookNumber}/reviews")
     public ResponseEntity<ResponseDto> createReview(
         @PathVariable("bookNumber") Integer bookNumber,

@@ -42,11 +42,7 @@ public class OrdersServiceImplements implements OrderService {
                 return ResponseDto.noExistUserId();
 
             // 주문 엔티티 생성 및 저장
-            OrdersEntity ordersEntity = new OrdersEntity();
-            ordersEntity.setUserId(userId);
-            ordersEntity.setOrderDate(LocalDate.now());
-            ordersEntity.setTotalPrice(0); // 초기값 설정
-            ordersEntity.setStatus("결제 대기");
+            OrdersEntity ordersEntity = new OrdersEntity(userId);
             ordersRepository.save(ordersEntity);
 
             // 주문 번호 가져오기
@@ -55,18 +51,15 @@ public class OrdersServiceImplements implements OrderService {
 
             // 주문 항목 처리
             for (PostOrderItemsRequestDto orderItemsRequestDto : create.getItems()) {
-                OrderItemsEntity orderItemsEntity = new OrderItemsEntity();
-                orderItemsEntity.setOrderNumber(orderNumber);
-                orderItemsEntity.setBookNumber(orderItemsRequestDto.getBookNumber());
-                orderItemsEntity.setQuantity(orderItemsRequestDto.getQuantity());
+                OrderItemsEntity orderItemsEntity = new OrderItemsEntity(orderItemsRequestDto, orderNumber);
 
-                // 책 정보 가져오기
                 BooksEntity booksEntity = booksRepository.findByBookNumber(orderItemsRequestDto.getBookNumber());
-                if (booksEntity == null)
-                    return ResponseDto.noExistBook();
+                if (booksEntity == null) return ResponseDto.noExistBook();
 
-                // 책 가격 및 주문 아이템 가격 설정
                 Integer pricePerUnit = booksEntity.getBookPrice();
+                double discout = booksEntity.getDiscountRate() / 100;
+                if(discout > 0 ) pricePerUnit = (int) (pricePerUnit - (pricePerUnit * discout));
+
                 orderItemsEntity.setPricePerUnit(pricePerUnit);
                 Integer itemTotalPrice = pricePerUnit * orderItemsRequestDto.getQuantity();
                 total += itemTotalPrice;
@@ -75,7 +68,6 @@ public class OrdersServiceImplements implements OrderService {
                 orderItemsRepository.save(orderItemsEntity);
             }
 
-            // 주문 엔티티에 총 가격 설정 및 저장
             ordersEntity.setTotalPrice(total);
             ordersRepository.save(ordersEntity);
 
@@ -87,8 +79,7 @@ public class OrdersServiceImplements implements OrderService {
     }
 
     @Override
-    @Scheduled(cron = "0 0 0 * * ?") // 매일 자정에 실행
-    @Transactional
+    @Scheduled(cron = "0 0 0 * * ?")
     public ResponseEntity<ResponseDto> OrderStatusScheduler() {
         try {
             List<OrdersEntity> orders = ordersRepository.findAllByStatus("결제 완료");
@@ -96,7 +87,6 @@ public class OrdersServiceImplements implements OrderService {
             System.out.println(orders);
 
             for (OrdersEntity order : orders) {
-                // 주문이 생성된 날짜를 확인
                 LocalDate orderDate = order.getOrderDate();
                 Integer daysBetween =(int) ChronoUnit.DAYS.between(orderDate, today);
                 System.out.println(daysBetween);

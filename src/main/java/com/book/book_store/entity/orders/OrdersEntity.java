@@ -21,4 +21,11 @@ public class OrdersEntity {
     private LocalDate orderDate;
     private Integer totalPrice;
     private String status;
+
+    public OrdersEntity (String userId){
+        this.userId = userId;
+        this.orderDate = LocalDate.now();
+        this.totalPrice = 0;
+        this.status = "결제 대기";
+    }
 }

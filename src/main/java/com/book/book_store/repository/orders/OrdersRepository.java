@@ -20,6 +20,18 @@ public interface OrdersRepository extends JpaRepository<OrdersEntity, Integer> {
     nativeQuery = true)
     OrdersResultSet hasPurchasedBook(@Param("userId") String userId, @Param("bookNumber") Integer bookNumber);
 
+    @Query(value =
+            "SELECT b.category_number AS cateoryNumber , SUM(oi.quantity) AS totalCount " +
+            "FROM order_items oi " +
+            "JOIN books b ON oi.book_number  = b.book_number " +
+            "JOIN orders o ON oi.order_number = o.order_number " +
+            "WHERE o.user_id =:userId " +
+            "GROUP BY b.category_number " +
+            "ORDER BY totalCount DESC " +
+            "LIMIT 1",
+            nativeQuery = true)
+   OrdersResultSet PurchasedBookList(@Param("userId") String userId);
+
     OrdersEntity findByOrderNumber(Integer orderNumber);
 
     List<OrdersEntity> findAllByStatus(String status);
