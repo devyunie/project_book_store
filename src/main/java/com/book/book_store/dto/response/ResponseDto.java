@@ -42,8 +42,8 @@ public class ResponseDto {
         ResponseDto responseBody = new ResponseDto(ResponseCode.NO_EXIST_BOOK, ResponseMessage.NO_EXIST_BOOK);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
-    public static ResponseEntity<ResponseDto> yesExistPurchaseBook() {
-        ResponseDto responseBody = new ResponseDto(ResponseCode.YES_PURCHASE_BOOK, ResponseMessage.YES_PURCHASE_BOOK);
+    public static ResponseEntity<ResponseDto> noExistPurchaseBook() {
+        ResponseDto responseBody = new ResponseDto(ResponseCode.NO_PURCHASE_BOOK, ResponseMessage.NO_PURCHASE_BOOK);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
     }
 

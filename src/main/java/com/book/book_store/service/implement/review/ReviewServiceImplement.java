@@ -1,5 +1,6 @@
 package com.book.book_store.service.implement.review;
 
+import com.book.book_store.entity.orders.resultSet.OrdersResultSet;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -24,22 +25,20 @@ public class ReviewServiceImplement implements ReviewService {
 
     @Override
     public ResponseEntity<ResponseDto> createReviews(PostReviewRequestDto dto, String userId, Integer bookNumber) {
+        OrdersResultSet ordersResultSet = null;
         try {
             boolean existBook = booksRepository.existsByBookNumber(bookNumber);
-            if (!existBook)
-                return ResponseDto.noExistBook();
+            if (!existBook) return ResponseDto.noExistBook();
 
             boolean existUser = userRepository.existsByUserId(userId);
-            if (!existUser)
-                return ResponseDto.noExistUserId();
+            if (!existUser) return ResponseDto.noExistUserId();
 
-            boolean hasPurchasedBook = ordersRepository.hasPurchasedBook(userId, bookNumber);
-            if (!hasPurchasedBook)
-                return ResponseDto.yesExistPurchaseBook();
+            ordersResultSet  = ordersRepository.hasPurchasedBook(userId, bookNumber);
+            if(ordersResultSet == null) return ResponseDto.noExistPurchaseBook();
+            ordersResultSet.getBookNumber();
 
-            boolean exists = reviewsRepository.existsByBookIdAndUserId(bookNumber, userId);
-            if (exists)
-                return ResponseDto.alredyReviewWrite();
+            boolean exists = reviewsRepository.existsByBookNumberAndUserId(bookNumber, userId);
+            if (exists) return ResponseDto.alredyReviewWrite();
 
             ReviewsEntity reviewsEntity = new ReviewsEntity(bookNumber, userId, dto);
             reviewsRepository.save(reviewsEntity);

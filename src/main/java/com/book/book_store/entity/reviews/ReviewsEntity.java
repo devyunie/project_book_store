@@ -27,7 +27,7 @@ public class ReviewsEntity {
     private String rating;
     private String comment;
 
-    public ReviewsEntity(Integer BookNumber, String userId, PostReviewRequestDto dto){
+    public ReviewsEntity(Integer bookNumber, String userId, PostReviewRequestDto dto){
         this.bookNumber = bookNumber;
         this.userId = userId;
         this.rating = dto.getRating();

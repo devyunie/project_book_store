@@ -7,5 +7,5 @@ import com.book.book_store.entity.reviews.ReviewsEntity;
 
 @Repository
 public interface ReviewsRepository extends JpaRepository<ReviewsEntity, Integer> {
-    boolean existsByBookIdAndUserId(Integer bookNumber, String userId);
+    boolean existsByBookNumberAndUserId(Integer bookNumber, String userId);
 }

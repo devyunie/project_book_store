@@ -8,7 +8,7 @@ public interface ResponseCode {
     String TOKEN_CREATE_FAIL = "TF";
     String NO_EXIST_BOOK = "NB";
     String NO_EXIST_USER_ID = "NI";
-    String YES_PURCHASE_BOOK = "YPB";
+    String NO_PURCHASE_BOOK = "NPB";
     String ALREADY_REVIEW_WRITE = "ARW";
     String NO_PERMISSION = "NP";
 
