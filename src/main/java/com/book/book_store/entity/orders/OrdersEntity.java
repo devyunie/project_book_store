@@ -1,4 +1,5 @@
 package com.book.book_store.entity.orders;
+import java.time.LocalDate;
 import java.util.Date;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,7 +18,7 @@ public class OrdersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderNumber;
     private String userId;
-    private Date orderDate;
+    private LocalDate orderDate;
     private Integer totalPrice;
     private String status;
 }

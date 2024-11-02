@@ -1,6 +1,12 @@
 package com.book.book_store.entity.reviews;
 
-import jakarta.persistence.*;
+import com.book.book_store.dto.request.PostReviewRequestDto;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +26,12 @@ public class ReviewsEntity {
     private String userId;
     private String rating;
     private String comment;
+
+    public ReviewsEntity(Integer BookNumber, String userId, PostReviewRequestDto dto){
+        this.bookNumber = bookNumber;
+        this.userId = userId;
+        this.rating = dto.getRating();
+        this.comment = dto.getComment();
+    }
 
 }

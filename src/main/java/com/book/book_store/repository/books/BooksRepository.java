@@ -11,7 +11,8 @@ import com.book.book_store.entity.books.BooksEntity;
 
 @Repository
 public interface BooksRepository extends JpaRepository<BooksEntity, Integer> {
-
+    boolean existsByBookNumber (Integer bookNumber);
+    BooksEntity findByBookNumber (Integer bookNumber);
     @Query(
     value=
     "SELECT * FROM books " +

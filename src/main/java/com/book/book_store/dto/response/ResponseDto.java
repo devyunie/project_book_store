@@ -1,9 +1,10 @@
 package com.book.book_store.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
@@ -31,4 +32,29 @@ public class ResponseDto {
         ResponseDto responseBody = new ResponseDto(ResponseCode.TOKEN_CREATE_FAIL, ResponseMessage.TOKEN_CREATE_FAIL);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseBody);
     }
+
+    public static ResponseEntity<ResponseDto> noExistUserId() {
+        ResponseDto responseBody = new ResponseDto(ResponseCode.NO_EXIST_USER_ID, ResponseMessage.NO_EXIST_USER_ID);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }
+
+    public static ResponseEntity<ResponseDto> noExistBook() {
+        ResponseDto responseBody = new ResponseDto(ResponseCode.NO_EXIST_BOOK, ResponseMessage.NO_EXIST_BOOK);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }
+    public static ResponseEntity<ResponseDto> yesExistPurchaseBook() {
+        ResponseDto responseBody = new ResponseDto(ResponseCode.YES_PURCHASE_BOOK, ResponseMessage.YES_PURCHASE_BOOK);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }
+
+    public static ResponseEntity<ResponseDto> alredyReviewWrite() {
+        ResponseDto responseBody = new ResponseDto(ResponseCode.ALREADY_REVIEW_WRITE, ResponseMessage.ALREADY_REVIEW_WRITE);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody);
+    }
+
+    public static ResponseEntity<ResponseDto> noPermission() {
+        ResponseDto responseBody = new ResponseDto(ResponseCode.NO_PERMISSION, ResponseMessage.NO_PERMISSION);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(responseBody);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.book.book_store.entity.order_items;
 
-import com.book.book_store.dto.request.orderItems.OrderItemsRequestDto;
+import com.book.book_store.dto.request.PostOrderItemsRequestDto;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,10 +27,10 @@ public class OrderItemsEntity {
     private Integer quantity;
     private Integer pricePerUnit;
 
-    public OrderItemsEntity (OrderItemsRequestDto dto)
+    public OrderItemsEntity (PostOrderItemsRequestDto dto, Integer orderNumber)
     {
+        this.orderNumber = orderNumber;
         this.bookNumber = dto.getBookNumber();
         this.quantity = dto.getQuantity();
-        this.pricePerUnit = dto.getPricePerUnit();
     }
 }
