@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.book.book_store.dto.request.PostReviewRequestDto;
+import com.book.book_store.dto.request.Review.PostReviewRequestDto;
 import com.book.book_store.dto.response.ResponseDto;
 import com.book.book_store.dto.response.books.GetBooksListResponseDto;
 import com.book.book_store.service.books.BookService;
@@ -39,7 +39,7 @@ public class BooksController {
         return response;
     }
 
-    @GetMapping("/best-seller")
+    @GetMapping("/recommend/best-seller")
     public ResponseEntity <? super GetBooksListResponseDto> getBooksBestSellerList(){
         ResponseEntity<? super GetBooksListResponseDto> response = bookService.getBestSellerBookList();
         return response;

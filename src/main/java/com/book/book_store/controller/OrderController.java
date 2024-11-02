@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.book.book_store.dto.request.PostOrderCreateRequestDto;
+import com.book.book_store.dto.request.orders.PostOrderCreateRequestDto;
 import com.book.book_store.dto.response.ResponseDto;
 import com.book.book_store.service.order.OrderService;
 

@@ -1,4 +1,4 @@
-package com.book.book_store.dto.request;
+package com.book.book_store.dto.request.Review;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

@@ -4,7 +4,7 @@ import com.book.book_store.entity.orders.resultSet.OrdersResultSet;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.book.book_store.dto.request.PostReviewRequestDto;
+import com.book.book_store.dto.request.Review.PostReviewRequestDto;
 import com.book.book_store.dto.response.ResponseDto;
 import com.book.book_store.entity.reviews.ReviewsEntity;
 import com.book.book_store.repository.books.BooksRepository;

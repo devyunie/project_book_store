@@ -2,7 +2,7 @@ package com.book.book_store.service.order;
 
 import org.springframework.http.ResponseEntity;
 
-import com.book.book_store.dto.request.PostOrderCreateRequestDto;
+import com.book.book_store.dto.request.orders.PostOrderCreateRequestDto;
 import com.book.book_store.dto.response.ResponseDto;
 
 public interface OrderService {

@@ -1,6 +1,6 @@
 package com.book.book_store.entity.reviews;
 
-import com.book.book_store.dto.request.PostReviewRequestDto;
+import com.book.book_store.dto.request.Review.PostReviewRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,6 +1,6 @@
 package com.book.book_store.entity.order_items;
 
-import com.book.book_store.dto.request.PostOrderItemsRequestDto;
+import com.book.book_store.dto.request.orders.PostOrderItemsRequestDto;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

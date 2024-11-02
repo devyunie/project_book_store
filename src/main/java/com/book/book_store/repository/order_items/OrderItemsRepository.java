@@ -11,13 +11,10 @@ import com.book.book_store.entity.order_items.resultSet.BestSellerOrdersListResu
 
 @Repository
 public interface OrderItemsRepository extends JpaRepository<OrderItemsEntity, Integer> {
-      @Query(
-        value=
-        "SELECT book_number AS BookNumber, COUNT(*) AS orderCount FROM order_items " +
-        "GROUP BY book_number " +
-        "ORDER BY COUNT(*) DESC " +
-        "LIMIT 5",
-        nativeQuery = true)
-    List<BestSellerOrdersListResultSet> getBestSellerBookList();
-    
+  @Query(value = "SELECT book_number AS BookNumber, COUNT(*) AS orderCount FROM order_items " +
+          "GROUP BY book_number " +
+          "ORDER BY COUNT(*) DESC " +
+          "LIMIT 5", nativeQuery = true)
+  List<BestSellerOrdersListResultSet> getBestSellerBookList();
+
 }
